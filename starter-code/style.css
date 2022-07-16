@@ -1,0 +1,49 @@
+.bg-light-blue {
+    background-color: hsla(178, 60%, 48%, 1);
+}
+
+.bg-dark-navy {
+    background-color: hsla(200, 32%, 15%, 1);
+}
+
+.bg-semi-dark-navy {
+    background-color: hsla(200, 35%, 19%, 1);
+}
+
+.bg-light-yello {
+    background-color: hsla(39, 88%, 58%, 1);
+}
+
+.bg-silver {
+    background-color: hsla(199, 24%, 73%, 1);
+}
+
+
+
+.text-dark-navy {
+    background-color: hsla(200, 32%, 15%, 1);
+}
+
+.text-silver {
+    background-color: hsla(199, 24%, 73%, 1);
+}
+
+
+.text-font-family {
+    font-family: 'Outfit', sans-serif;
+}
+
+
+
+
+.light-blue-hover:hover {
+    background-color: Light hsla(178, 76%, 66%, 1);
+}
+
+.light-yello-hover:hover {
+    background-color: Light hsla(39, 100%, 69%, 1);
+}
+
+.silver-hover:hover {
+    background-color: Light hsla(198, 35%, 89%, 1);
+}
