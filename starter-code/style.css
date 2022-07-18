@@ -131,6 +131,10 @@ button {
 }
 
 svg {
+    transform: scale(0.7);
+}
+
+.scaling {
     transform: scale(0.5);
 }
 
@@ -220,13 +224,14 @@ span {
     margin: 0px 24px 20px 24px;
 }
 
-.gird-container input {
+.inputs-standart-style {
     all:unset;
     width: 95px;
     height: 100px;
     background-color: hsla(200, 35%, 19%, 1);
     box-shadow: inset 0px -8px 0px #10212A;
     border-radius: 10px;
+    text-align: center;
 }
 
 .output-container {
@@ -252,4 +257,16 @@ output {
 
 .for-period {
     display: none;
+}
+
+.bg-image-o {
+    background-image: url(./assets/icon-o.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-image-x {
+    background-image: url(./assets/icon-x.svg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
