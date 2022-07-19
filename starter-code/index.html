@@ -35,10 +35,7 @@
  <form action="">
     <div class="header-container">
       <img src="./assets/logo.svg" alt="logo">
-      <div id="turn" class="bg-semi-dark-navy box-shadow-navy text-silver">
-        <svg class="text-silver small-svg" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="currentColor" fill-rule="evenodd"/>
-        </svg>
+      <div id="turn" class="bg-semi-dark-navy box-shadow-navy text-silver bg-image-x">
         <span>turn</span>
       </div>
       <button id="restart">
@@ -76,7 +73,7 @@
     let inputSeven = document.getElementById("input-3.1");
     let inputEight = document.getElementById("input-3.2");
     let inputNine = document.getElementById("input-3.3");
-
+    const turn = document.getElementById("turn");
     let sum = 0;
     let sumOfO = 0;
     let sumOfX = 0;
@@ -92,9 +89,13 @@
         if (sum % 2 == 1){
           event.target.classList.add("bg-image-x");
           sumOfX = event.target.value = "1";
+          turn.classList.remove("bg-image-x");
+          turn.classList.add("bg-image-o");
         } else {
           event.target.classList.add("bg-image-o");
           sumOfO = event.target.value = "2";
+          turn.classList.remove("bg-image-o");
+          turn.classList.add("bg-image-x");
         }
         event.target.disabled ="true";
         console.log(sum);

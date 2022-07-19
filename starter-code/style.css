@@ -190,6 +190,13 @@ form {
     text-transform: uppercase;
     width: 125px;
     height: 40px;
+    justify-content: right;
+    background-position: 15%;
+    background-size: 20px;
+}
+
+#turn span {
+    margin-right: 13px;
 }
 
 .small-svg {
