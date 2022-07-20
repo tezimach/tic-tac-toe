@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
   <title>Tic Tac Toe</title>
 </head>
-<body class="bg-dark-navy">
+<body class="bg-dark-navy" id="body">
   <!-- New game menu start -->
   <img id="logo" src="./assets/logo.svg" alt="logo">
   <div class="bg-semi-dark-navy main-container">
@@ -38,7 +38,7 @@
       <div id="turn" class="bg-semi-dark-navy box-shadow-navy text-silver bg-image-x">
         <span>turn</span>
       </div>
-      <button id="restart">
+      <button type="button" id="restart">
         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
           <path d="M19.524 0h-1.88a.476.476 0 0 0-.476.499l.159 3.284A9.81 9.81 0 0 0 9.835.317C4.415.317-.004 4.743 0 10.167.004 15.597 4.406 20 9.835 20a9.796 9.796 0 0 0 6.59-2.536.476.476 0 0 0 .019-.692l-1.348-1.349a.476.476 0 0 0-.65-.022 6.976 6.976 0 0 1-9.85-.63 6.987 6.987 0 0 1 .63-9.857 6.976 6.976 0 0 1 10.403 1.348l-4.027-.193a.476.476 0 0 0-.498.476v1.881c0 .263.213.476.476.476h7.944A.476.476 0 0 0 20 8.426V.476A.476.476 0 0 0 19.524 0Z" fill="#1F3641"/>
         </svg>
@@ -64,21 +64,221 @@
   </form>
   <script>
     const inputs = document.getElementsByTagName("input");
-    let inputOne = document.getElementById("input-1.1");
-    let inputTwo = document.getElementById("input-1.2");
-    let inputThree = document.getElementById("input-1.3");
-    let inputFour = document.getElementById("input-2.1");
-    let inputFive = document.getElementById("input-2.2");
-    let inputSix = document.getElementById("input-2.3");
-    let inputSeven = document.getElementById("input-3.1");
-    let inputEight = document.getElementById("input-3.2");
-    let inputNine = document.getElementById("input-3.3");
     const turn = document.getElementById("turn");
     let sum = 0;
-    let sumOfO = 0;
-    let sumOfX = 0;
+    let valueO = 0;
+    let valueX = 0;
+    let inputOne;
+    let inputTwo;
+    let inputThree;
+    let inputFour;
+    let inputFive;
+    let inputSix;
+    let inputSeven;
+    let inputEight;
+    let inputNine;
+    let bodyTag = document.getElementById("body");
+    let newDiv;
+    let winnerDeclaration;
+    let spanOne;
+    let spanTwo;
+    let twoButton;
+    let buttonQuit;
+    let buttonNextRound;
+    let textOne;
+    let textOneAlt;
+    let textTwo;
+    let textQuit;
+    let textNextRound;
+    let textRoundTied;
+    let winner;
+    let textRestart;
+    let textCancel;
+    let textYesRestart;
+
+    let newInput = function() {
+      inputOne = document.getElementById("input-1.1").value;
+      inputTwo = document.getElementById("input-1.2").value;
+      inputThree = document.getElementById("input-1.3").value;
+      inputFour = document.getElementById("input-2.1").value;
+      inputFive = document.getElementById("input-2.2").value;
+      inputSix = document.getElementById("input-2.3").value;
+      inputSeven = document.getElementById("input-3.1").value;
+      inputEight = document.getElementById("input-3.2").value;
+      inputNine = document.getElementById("input-3.3").value;
+    }
+
+    let winnerScreen = function() {
+      newDiv = document.createElement("div");
+      document.body.appendChild(newDiv);
+      newDiv.classList.add("last-screen");
+      winnerDeclaration = document.createElement("div");
+      newDiv.appendChild(winnerDeclaration);
+      winnerDeclaration.classList.add("winner-declaration");
+      spanOne = document.createElement("span");
+      spanTwo = document.createElement("span");
+      twoButton = document.createElement("div");
+      buttonQuit = document.createElement("button");
+      buttonNextRound = document.createElement("button");
+      textOne = document.createTextNode("Player 1 wins!");
+      textOneAlt = document.createTextNode("Player 2 wins!");
+      textTwo = document.createTextNode("Takes the round");
+      textQuit = document.createTextNode("Quit");
+      textNextRound = document.createTextNode("Next Round");
+      winnerDeclaration.appendChild(spanOne);
+      winnerDeclaration.appendChild(spanTwo);
+      winnerDeclaration.appendChild(twoButton);
+      twoButton.appendChild(buttonQuit);
+      twoButton.appendChild(buttonNextRound);
+      spanTwo.appendChild(textTwo);
+      buttonQuit.appendChild(textQuit);
+      buttonNextRound.appendChild(textNextRound);
+      spanOne.classList.add("text-1");
+      buttonQuit.classList.add("quit-button");
+      buttonNextRound.classList.add("next-round-button");
+    }
+
+    let winnerPlayerOne = function() {
+      if(inputOne + inputTwo + inputThree == 111) {
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else if (inputFour + inputFive + inputSix == 111) {
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else if (inputSeven + inputEight + inputNine == 111){
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else if (inputOne + inputFour + inputSeven == 111){
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else if (inputTwo + inputFive + inputEight == 111){
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else if (inputThree + inputSix + inputNine == 111){
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      }  else if (inputOne + inputFive + inputNine == 111){
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else if (inputThree + inputFive + inputSeven == 111){
+        console.log("player 1 wins");
+        winner = 1;
+        winnerScreen();
+        spanOne.appendChild(textOne);
+        spanTwo.classList.add("text-2");
+      } else {
+        console.log("Nope");
+      }
+    }
+
+    let winnerPlayerTwo = function() {
+      if(inputOne + inputTwo + inputThree == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else if (inputFour + inputFive + inputSix == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else if (inputSeven + inputEight + inputNine == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else if (inputOne + inputFour + inputSeven == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else if (inputTwo + inputFive + inputEight == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else if (inputThree + inputSix + inputNine == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      }  else if (inputOne + inputFive + inputNine == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else if (inputThree + inputFive + inputSeven == 222){
+        console.log("player 2 wins");
+        winner = 2;
+        winnerScreen();
+        spanOne.appendChild(textOneAlt);
+        spanTwo.classList.add("text-2-alt");
+      } else {
+        console.log("Nope");
+      }
+    }
+
+    let roundTied = function () {
+      if (sum == 9 && winner != 1 && winner !=2) {
+        winnerScreen ();
+        textRoundTied =document.createTextNode("Round tied");
+        spanTwo.replaceChild(textRoundTied, textTwo);
+        spanTwo.classList.add("text-round-tied");
+        winner = 3;
+      }
+    }
+
+    let quitGame = function() {
+      buttonQuit.addEventListener("click", (event) => {
+        if (winner ==1 || winner ==2){
+          textRestart =document.createTextNode("Restart Game?");
+          spanTwo.replaceChild(textRestart, textTwo);
+          spanTwo.classList.remove("text-2")
+          spanTwo.classList.remove("text-2-alt")
+          spanTwo.classList.add("text-round-tied");
+        }
+        if (winner ==3){
+          textRestart =document.createTextNode("Restart Game?");
+          spanTwo.replaceChild(textRestart, textRoundTied);
+          spanTwo.classList.add("text-round-tied");
+        }
+        textCancel = document.createTextNode("No, cancel");
+        textYesRestart = document.createTextNode("Yes, restart");
+        buttonQuit.replaceChild(textCancel, textQuit);
+        buttonNextRound.replaceChild(textYesRestart, textNextRound);
+        buttonQuit.classList.add("cancel");
+      });
+    }
  
-    Array.from(inputs).map((input) => {
+    let newArray = Array.from(inputs).map((input) => {
         input.addEventListener ("click", (event) => {  
         if (sum < 9) {
           event.target.value = "1";
@@ -88,38 +288,44 @@
         }
         if (sum % 2 == 1){
           event.target.classList.add("bg-image-x");
-          sumOfX = event.target.value = "1";
+          valueX = event.target.value = "1";
           turn.classList.remove("bg-image-x");
           turn.classList.add("bg-image-o");
         } else {
           event.target.classList.add("bg-image-o");
-          sumOfO = event.target.value = "2";
+          valueO = event.target.value = "2";
           turn.classList.remove("bg-image-o");
           turn.classList.add("bg-image-x");
         }
+        newInput();
+        winnerPlayerOne();
+        winnerPlayerTwo();
+        roundTied ();
+        if (winner == 1 || winner == 2 || winner ==3) {
+          quitGame();
+        }
         event.target.disabled ="true";
-        console.log(sum);
-        console.log(sumOfX);
-        console.log(sumOfO);
       });
     });
 
+    document.getElementById("restart").addEventListener("click",()=>{
+      winnerScreen();
+      textRestart =document.createTextNode("Restart Game?");
+      spanTwo.replaceChild(textRestart, textTwo);
+      spanTwo.classList.add("text-round-tied");
+      quitGame();
+    })
+
+
+
+
+  
   </script>
 
   <button class="for-period">
 
   Oh no, you lost
   You won!
-  Player <!-- 1/2 --> wins!
-
-  <!-- x/o icon --> takes the round
-  Round tied
-  Restart game?
-
-  Quit
-  Next round
-  No, cancel
-  Yes, restart
 
   <!-- Game board end -->
   </button>
