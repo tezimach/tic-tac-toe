@@ -138,109 +138,33 @@
       buttonNextRound.classList.add("next-round-button");
     }
 
-    let winnerPlayerOne = function() {
-      if(inputOne + inputTwo + inputThree == 111) {
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else if (inputFour + inputFive + inputSix == 111) {
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else if (inputSeven + inputEight + inputNine == 111){
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else if (inputOne + inputFour + inputSeven == 111){
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else if (inputTwo + inputFive + inputEight == 111){
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else if (inputThree + inputSix + inputNine == 111){
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      }  else if (inputOne + inputFive + inputNine == 111){
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else if (inputThree + inputFive + inputSeven == 111){
-        console.log("player 1 wins");
-        winner = 1;
-        winnerScreen();
-        spanOne.appendChild(textOne);
-        spanTwo.classList.add("text-2");
-      } else {
-        console.log("Nope");
-      }
-    }
-
-    let winnerPlayerTwo = function() {
-      if(inputOne + inputTwo + inputThree == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      } else if (inputFour + inputFive + inputSix == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      } else if (inputSeven + inputEight + inputNine == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      } else if (inputOne + inputFour + inputSeven == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      } else if (inputTwo + inputFive + inputEight == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      } else if (inputThree + inputSix + inputNine == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      }  else if (inputOne + inputFive + inputNine == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
-      } else if (inputThree + inputFive + inputSeven == 222){
-        console.log("player 2 wins");
-        winner = 2;
-        winnerScreen();
-        spanOne.appendChild(textOneAlt);
-        spanTwo.classList.add("text-2-alt");
+    let winnerPlayer = function() {
+      if(inputOne + inputTwo + inputThree == 111
+        || inputFour + inputFive + inputSix == 111 
+        || inputSeven + inputEight + inputNine == 111
+        || inputOne + inputFour + inputSeven == 111 
+        || inputTwo + inputFive + inputEight == 111 
+        || inputThree + inputSix + inputNine == 111 
+        || inputOne + inputFive + inputNine == 111 
+        || inputThree + inputFive + inputSeven == 111) {
+          console.log("player 1 wins");
+          winner = 1;
+          winnerScreen();
+          spanOne.appendChild(textOne);
+          spanTwo.classList.add("text-2");
+      } else if (inputOne + inputTwo + inputThree == 222
+        || inputFour + inputFive + inputSix == 222 
+        || inputSeven + inputEight + inputNine == 222
+        || inputOne + inputFour + inputSeven == 222 
+        || inputTwo + inputFive + inputEight == 222 
+        || inputThree + inputSix + inputNine == 222 
+        || inputOne + inputFive + inputNine == 222 
+        || inputThree + inputFive + inputSeven == 222){
+          console.log("player 2 wins");
+          winner = 2;
+          winnerScreen();
+          spanOne.appendChild(textOneAlt);
+          spanTwo.classList.add("text-2-alt");
       } else {
         console.log("Nope");
       }
@@ -257,26 +181,36 @@
     }
 
     let quitGame = function() {
+      let count = 0;
       buttonQuit.addEventListener("click", (event) => {
         if (winner ==1 || winner ==2){
           textRestart =document.createTextNode("Restart Game?");
-          spanTwo.replaceChild(textRestart, textTwo);
+          if (count ==0) {
+            spanTwo.replaceChild(textRestart, textTwo);
+          }
+          
           spanTwo.classList.remove("text-2")
           spanTwo.classList.remove("text-2-alt")
           spanTwo.classList.add("text-round-tied");
         }
         if (winner ==3){
           textRestart =document.createTextNode("Restart Game?");
-          spanTwo.replaceChild(textRestart, textRoundTied);
+          if (count == 0) {
+            spanTwo.replaceChild(textRestart, textRoundTied);
+          }
           spanTwo.classList.add("text-round-tied");
         }
-        textCancel = document.createTextNode("No, cancel");
-        textYesRestart = document.createTextNode("Yes, restart");
-        buttonQuit.replaceChild(textCancel, textQuit);
-        buttonNextRound.replaceChild(textYesRestart, textNextRound);
-        buttonQuit.classList.add("cancel");
+          textCancel = document.createTextNode("No, cancel");
+          textYesRestart = document.createTextNode("Yes, restart");
+          if (count == 0) {
+            buttonNextRound.replaceChild(textYesRestart, textNextRound);
+            buttonQuit.replaceChild(textCancel, textQuit);
+          }
+          count++;
+          buttonQuit.classList.add("cancel");
       });
     }
+
  
     let newArray = Array.from(inputs).map((input) => {
         input.addEventListener ("click", (event) => {  
@@ -298,11 +232,10 @@
           turn.classList.add("bg-image-x");
         }
         newInput();
-        winnerPlayerOne();
-        winnerPlayerTwo();
+        winnerPlayer();
         roundTied ();
         if (winner == 1 || winner == 2 || winner ==3) {
-          quitGame();
+        quitGame();
         }
         event.target.disabled ="true";
       });
@@ -314,7 +247,7 @@
       spanTwo.replaceChild(textRestart, textTwo);
       spanTwo.classList.add("text-round-tied");
       quitGame();
-    })
+    });
 
 
 
