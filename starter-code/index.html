@@ -57,9 +57,18 @@
       <input class ="inputs-standart-style" id="input-3.3" type="button" value="0"></input>
     </div>
     <div class="output-container text-dark-navy">
-      <output id="result-player-one" class="bg-light-blue">X (You)</output>
-      <output id="result-tie" class="bg-silver">Ties</output>
-      <output id="result-player-two" class="bg-light-yello">X (CPU)</output>
+      <div class="bg-light-blue outputs">
+        <span>X (You)</span>
+        <output id="result-player-one" class="bg-light-blue">0</output>
+      </div>
+      <div class="bg-silver outputs">
+        <span>Ties</span>
+        <output id="result-tie" class="bg-silver" value ="0">0</output>
+      </div>
+      <div class="bg-light-yello outputs">
+        <span>X (CPU)</span>
+        <output id="result-player-two" class="bg-light-yello">0</output>
+      </div>
     </div>
   </form>
   <div id="last-screen" class="last-screen hidden">

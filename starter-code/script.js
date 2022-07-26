@@ -18,6 +18,9 @@ const inputs = document.getElementsByTagName("input");
     let buttonNextRound = document.getElementById("next-round-button");
     let winner;
     let playerSwitch = document.getElementsByClassName("player-switcher");
+    let tieCount =0;
+    let playerOneCount =0;
+    let playerTwoCount =0;
     
    Array.from(playerSwitch).map((button) => {
       button.addEventListener("click",(event)=>{
@@ -71,10 +74,15 @@ const inputs = document.getElementsByTagName("input");
         document.getElementById("multiplayer").classList.remove("hidden");
         document.getElementById("main-container").classList.remove("hidden");
         goTodefault();
+        document.getElementById("result-player-one").innerText = `0`;
+        document.getElementById("result-player-two").innerText = `0`;
+        document.getElementById("result-tie").innerText = `0`;
+        tieCount =0;
+        playerOneCount =0;
+        playerTwoCount =0;
       }
       if (buttonQuit.textContent == "No, cancel"){
         buttonQuit.addEventListener("click", () =>{
-            goTodefault();
             document.getElementById("last-screen").classList.add("hidden");
         });
       }
@@ -87,7 +95,12 @@ const inputs = document.getElementsByTagName("input");
             document.getElementById("multiplayer").classList.remove("hidden");
             document.getElementById("main-container").classList.remove("hidden");
             goTodefault();
-            console.log(buttonNextRound.textContent == "Yes, restart");
+            document.getElementById("result-player-one").innerText = `0`;
+            document.getElementById("result-player-two").innerText = `0`;
+            document.getElementById("result-tie").innerText = `0`;
+            tieCount =0;
+            playerOneCount =0;
+            playerTwoCount =0;
         }
     });
         
@@ -111,6 +124,10 @@ const inputs = document.getElementsByTagName("input");
       document.getElementById("last-screen").classList.remove("hidden");
     }
 
+    let playerWinnerCount = function(){
+        document.getElementById("result-player-one").innerText = `${playerOneCount}`;
+        document.getElementById("result-player-two").innerText = `${playerTwoCount}`;
+    }
     let winnerPlayer = function() {
       if(inputOne + inputTwo + inputThree == 111
         || inputFour + inputFive + inputSix == 111 
@@ -120,15 +137,16 @@ const inputs = document.getElementsByTagName("input");
         || inputThree + inputSix + inputNine == 111 
         || inputOne + inputFive + inputNine == 111 
         || inputThree + inputFive + inputSeven == 111) {
-          console.log("player 1 wins");
           winner = 1;
+          playerOneCount++;
+          playerWinnerCount();
           winnerScreen();
           spanOne.textContent = "player 1 wins!";
           spanTwo.textContent = "Takes next round";
           spanTwo.classList.remove("text-round-tied");
           spanTwo.classList.add("text-2");
           buttonQuit.textContent = "Quit";
-          buttonNextRound.textContent = "Next Round";
+          buttonNextRound.textContent = "Next Round";     
       } else if (inputOne + inputTwo + inputThree == 222
         || inputFour + inputFive + inputSix == 222 
         || inputSeven + inputEight + inputNine == 222
@@ -137,18 +155,22 @@ const inputs = document.getElementsByTagName("input");
         || inputThree + inputSix + inputNine == 222 
         || inputOne + inputFive + inputNine == 222 
         || inputThree + inputFive + inputSeven == 222){
-          console.log("player 2 wins");
           winner = 2;
+          playerTwoCount++;
+          playerWinnerCount();
           winnerScreen();
           spanOne.textContent = "player 2 wins!";
           spanTwo.textContent = "Takes next round";
           spanTwo.classList.remove("text-round-tied");
           spanTwo.classList.add("text-2-alt");
           buttonQuit.textContent = "Quit";
-          buttonNextRound.textContent = "Next Round";
+          buttonNextRound.textContent = "Next Round";  
       } else {
-        console.log("Nope");
       }
+    }
+
+    let tieValue = function (){
+        document.getElementById("result-tie").innerText = `${tieCount}`;
     }
 
     let roundTied = function () {
@@ -162,6 +184,8 @@ const inputs = document.getElementsByTagName("input");
         spanTwo.classList.add("text-round-tied");
         buttonQuit.textContent = "Quit";
         buttonNextRound.textContent = "Next Round";
+        tieCount++;
+        tieValue();
       }
     }
 
@@ -174,7 +198,6 @@ const inputs = document.getElementsByTagName("input");
     let quitGame = function() {
       let count = 0;
       buttonQuit.addEventListener("click", () => {
-      console.log(count);
       displayToggle();
       });
       buttonNextRound.addEventListener("click", () =>{
@@ -182,7 +205,6 @@ const inputs = document.getElementsByTagName("input");
         goTodefault();
         document.getElementById("last-screen").classList.add("hidden");
         }
-        console.log("whywhey");
         });
     }
 
@@ -227,4 +249,3 @@ const inputs = document.getElementsByTagName("input");
   }
 
   restartButton();
-
