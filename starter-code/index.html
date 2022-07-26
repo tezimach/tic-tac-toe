@@ -11,17 +11,17 @@
 </head>
 <body class="bg-dark-navy" id="body">
   <!-- New game menu start -->
-  <img id="logo" src="./assets/logo.svg" alt="logo">
-  <div class="bg-semi-dark-navy main-container">
+  <img id="logo" src="./assets/logo.svg" alt="logo" class="">
+  <div id ="main-container" class="bg-semi-dark-navy main-container">
     <h1 class="text-silver">Pick player 1's mark</h1>
     <div class="bg-dark-navy player-container">
-      <button class="bg-dark-navy" >
-        <svg class="text-silver scaling" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+      <button id ="x-player" class=" text-silver bg-dark-navy player-switcher" active="false">
+        <svg id="1" class="scaling" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="currentColor" fill-rule="evenodd"/>
         </svg>
       </button>
-      <button class="bg-silver scaling">
-        <svg class="text-dark-navy" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+      <button id="y-player" class="bg-silver player-switcher text-dark-navy " active="true">
+        <svg id="2" class="scaling" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
           <path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" fill="currentColor"/>
         </svg>
       </button>
@@ -32,7 +32,7 @@
   <button id="multiplayer" class="bg-light-blue box-shadow-blue">New Game (vs player)</button>
   <!-- New game menu end -->
   <!-- Game board start -->
- <form action="">
+ <form id ="game" class="hidden" action="">
     <div class="header-container">
       <img src="./assets/logo.svg" alt="logo">
       <div id="turn" class="bg-semi-dark-navy box-shadow-navy text-silver bg-image-x">
@@ -62,198 +62,18 @@
       <output id="result-player-two" class="bg-light-yello">X (CPU)</output>
     </div>
   </form>
-  <script>
-    const inputs = document.getElementsByTagName("input");
-    const turn = document.getElementById("turn");
-    let sum = 0;
-    let valueO = 0;
-    let valueX = 0;
-    let inputOne;
-    let inputTwo;
-    let inputThree;
-    let inputFour;
-    let inputFive;
-    let inputSix;
-    let inputSeven;
-    let inputEight;
-    let inputNine;
-    let bodyTag = document.getElementById("body");
-    let newDiv;
-    let winnerDeclaration;
-    let spanOne;
-    let spanTwo;
-    let twoButton;
-    let buttonQuit;
-    let buttonNextRound;
-    let textOne;
-    let textOneAlt;
-    let textTwo;
-    let textQuit;
-    let textNextRound;
-    let textRoundTied;
-    let winner;
-    let textRestart;
-    let textCancel;
-    let textYesRestart;
+  <div id="last-screen" class="last-screen hidden">
+    <div class="winner-declaration">
+      <span id="winner-text" class="text-1"></span>
+      <span id="next-round-text" class="text-round-tied">Round Tied</span>
+      <div>
+        <button class="quit-button" id="quit-button">Quit</button>
+        <button class="next-round-button" id="next-round-button">Next Round</button>
+      </div>
+    </div>
+  </div>
 
-    let newInput = function() {
-      inputOne = document.getElementById("input-1.1").value;
-      inputTwo = document.getElementById("input-1.2").value;
-      inputThree = document.getElementById("input-1.3").value;
-      inputFour = document.getElementById("input-2.1").value;
-      inputFive = document.getElementById("input-2.2").value;
-      inputSix = document.getElementById("input-2.3").value;
-      inputSeven = document.getElementById("input-3.1").value;
-      inputEight = document.getElementById("input-3.2").value;
-      inputNine = document.getElementById("input-3.3").value;
-    }
-
-    let winnerScreen = function() {
-      newDiv = document.createElement("div");
-      document.body.appendChild(newDiv);
-      newDiv.classList.add("last-screen");
-      winnerDeclaration = document.createElement("div");
-      newDiv.appendChild(winnerDeclaration);
-      winnerDeclaration.classList.add("winner-declaration");
-      spanOne = document.createElement("span");
-      spanTwo = document.createElement("span");
-      twoButton = document.createElement("div");
-      buttonQuit = document.createElement("button");
-      buttonNextRound = document.createElement("button");
-      textOne = document.createTextNode("Player 1 wins!");
-      textOneAlt = document.createTextNode("Player 2 wins!");
-      textTwo = document.createTextNode("Takes the round");
-      textQuit = document.createTextNode("Quit");
-      textNextRound = document.createTextNode("Next Round");
-      winnerDeclaration.appendChild(spanOne);
-      winnerDeclaration.appendChild(spanTwo);
-      winnerDeclaration.appendChild(twoButton);
-      twoButton.appendChild(buttonQuit);
-      twoButton.appendChild(buttonNextRound);
-      spanTwo.appendChild(textTwo);
-      buttonQuit.appendChild(textQuit);
-      buttonNextRound.appendChild(textNextRound);
-      spanOne.classList.add("text-1");
-      buttonQuit.classList.add("quit-button");
-      buttonNextRound.classList.add("next-round-button");
-    }
-
-    let winnerPlayer = function() {
-      if(inputOne + inputTwo + inputThree == 111
-        || inputFour + inputFive + inputSix == 111 
-        || inputSeven + inputEight + inputNine == 111
-        || inputOne + inputFour + inputSeven == 111 
-        || inputTwo + inputFive + inputEight == 111 
-        || inputThree + inputSix + inputNine == 111 
-        || inputOne + inputFive + inputNine == 111 
-        || inputThree + inputFive + inputSeven == 111) {
-          console.log("player 1 wins");
-          winner = 1;
-          winnerScreen();
-          spanOne.appendChild(textOne);
-          spanTwo.classList.add("text-2");
-      } else if (inputOne + inputTwo + inputThree == 222
-        || inputFour + inputFive + inputSix == 222 
-        || inputSeven + inputEight + inputNine == 222
-        || inputOne + inputFour + inputSeven == 222 
-        || inputTwo + inputFive + inputEight == 222 
-        || inputThree + inputSix + inputNine == 222 
-        || inputOne + inputFive + inputNine == 222 
-        || inputThree + inputFive + inputSeven == 222){
-          console.log("player 2 wins");
-          winner = 2;
-          winnerScreen();
-          spanOne.appendChild(textOneAlt);
-          spanTwo.classList.add("text-2-alt");
-      } else {
-        console.log("Nope");
-      }
-    }
-
-    let roundTied = function () {
-      if (sum == 9 && winner != 1 && winner !=2) {
-        winnerScreen ();
-        textRoundTied =document.createTextNode("Round tied");
-        spanTwo.replaceChild(textRoundTied, textTwo);
-        spanTwo.classList.add("text-round-tied");
-        winner = 3;
-      }
-    }
-
-    let quitGame = function() {
-      let count = 0;
-      buttonQuit.addEventListener("click", (event) => {
-        if (winner ==1 || winner ==2){
-          textRestart =document.createTextNode("Restart Game?");
-          if (count ==0) {
-            spanTwo.replaceChild(textRestart, textTwo);
-          }
-          
-          spanTwo.classList.remove("text-2")
-          spanTwo.classList.remove("text-2-alt")
-          spanTwo.classList.add("text-round-tied");
-        }
-        if (winner ==3){
-          textRestart =document.createTextNode("Restart Game?");
-          if (count == 0) {
-            spanTwo.replaceChild(textRestart, textRoundTied);
-          }
-          spanTwo.classList.add("text-round-tied");
-        }
-          textCancel = document.createTextNode("No, cancel");
-          textYesRestart = document.createTextNode("Yes, restart");
-          if (count == 0) {
-            buttonNextRound.replaceChild(textYesRestart, textNextRound);
-            buttonQuit.replaceChild(textCancel, textQuit);
-          }
-          count++;
-          buttonQuit.classList.add("cancel");
-      });
-    }
-
- 
-    let newArray = Array.from(inputs).map((input) => {
-        input.addEventListener ("click", (event) => {  
-        if (sum < 9) {
-          event.target.value = "1";
-          sum += parseInt(input["value"]);
-        } else {
-          sum = 9;
-        }
-        if (sum % 2 == 1){
-          event.target.classList.add("bg-image-x");
-          valueX = event.target.value = "1";
-          turn.classList.remove("bg-image-x");
-          turn.classList.add("bg-image-o");
-        } else {
-          event.target.classList.add("bg-image-o");
-          valueO = event.target.value = "2";
-          turn.classList.remove("bg-image-o");
-          turn.classList.add("bg-image-x");
-        }
-        newInput();
-        winnerPlayer();
-        roundTied ();
-        if (winner == 1 || winner == 2 || winner ==3) {
-        quitGame();
-        }
-        event.target.disabled ="true";
-      });
-    });
-
-    document.getElementById("restart").addEventListener("click",()=>{
-      winnerScreen();
-      textRestart =document.createTextNode("Restart Game?");
-      spanTwo.replaceChild(textRestart, textTwo);
-      spanTwo.classList.add("text-round-tied");
-      quitGame();
-    });
-
-
-
-
-  
-  </script>
+  <script src="./script.js"></script>
 
   <button class="for-period">
 

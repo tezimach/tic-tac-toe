@@ -77,7 +77,6 @@ body {
     width: 87.2%;
     max-width: 460px;
     min-width: 327px;
-    display: none;
 }
 
 h1 {
@@ -152,22 +151,11 @@ h2 {
     margin-bottom: 30px;
 }
 
-#logo {
-    display: none;
-}
-
-#cpu {
-    display: none;
-}
-
-#multiplayer {
-    display: none;
-}
-
 
 form {
     display: flex;
     flex-wrap: wrap;
+    max-width: 460px;
 }
 
 .header-container {
@@ -233,7 +221,6 @@ span {
 
 .inputs-standart-style {
     all:unset;
-    width: 95px;
     height: 100px;
     background-color: hsla(200, 35%, 19%, 1);
     box-shadow: inset 0px -8px 0px #10212A;
@@ -322,7 +309,7 @@ output {
     background-repeat: no-repeat;
     background-size: 9%;
     background-position-x: 1%;
-    width: 280px;
+    width: 300px;
     text-align: end;
     background-position-y: 2px;
 }
@@ -341,7 +328,7 @@ output {
     background-repeat: no-repeat;
     background-size: 9%;
     background-position-x: 1%;
-    width: 280px;
+    width: 300px;
     text-align: end;
     background-position-y: 2px;
 }
@@ -388,4 +375,8 @@ output {
     min-width: 139px;
     max-width: 139px;
     width: 139px;
+}
+
+.hidden {
+    display: none;
 }
