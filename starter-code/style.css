@@ -226,6 +226,7 @@ span {
     box-shadow: inset 0px -8px 0px #10212A;
     border-radius: 10px;
     text-align: center;
+    color:hsla(200, 35%, 19%, 0); 
 }
 
 .output-container {
